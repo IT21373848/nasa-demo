@@ -1,21 +1,28 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { PUBLIC_URL } from "configs/config";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const isLoggedIn = !!localStorage.getItem('user');
+  const isLoggedIn = !!localStorage.getItem("user");
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    localStorage.removeItem('user'); 
-    navigate('/signin');
+    localStorage.removeItem("user");
+    navigate("/signin");
   };
 
   return (
     <nav className="bg-gray-900 py-4">
       <div className="container mx-auto px-4 flex items-center justify-between">
-
-        <Link to="/" className="text-white text-2xl font-bold flex items-center">
-          <img src="/images/NASA-Logo-Large.png" alt="NASA Logo" className="h-12 mr-2" />
+        <Link
+          to="/"
+          className="text-white text-2xl font-bold flex items-center"
+        >
+          <img
+            src={`${PUBLIC_URL}/images/NASA-Logo-Large.png`}
+            alt="NASA Logo"
+            className="h-12 mr-2"
+          />
         </Link>
 
         <ul className="flex space-x-6">
@@ -25,11 +32,11 @@ const Navbar = () => {
             </Link>
           </li>
           {isLoggedIn && (
-          <li>
-            <Link to="/events" className="text-white hover:text-gray-300">
-              News & Events
-            </Link>
-          </li>
+            <li>
+              <Link to="/events" className="text-white hover:text-gray-300">
+                News & Events
+              </Link>
+            </li>
           )}
           <li>
             <Link to="/pictures" className="text-white hover:text-gray-300">
@@ -37,9 +44,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-
             {isLoggedIn ? (
-              <button onClick={handleSignOut} className="text-white hover:text-gray-300">
+              <button
+                onClick={handleSignOut}
+                className="text-white hover:text-gray-300"
+              >
                 Sign Out
               </button>
             ) : (
